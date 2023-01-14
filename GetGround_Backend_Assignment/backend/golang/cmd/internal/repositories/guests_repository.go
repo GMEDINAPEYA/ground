@@ -3,6 +3,7 @@ package repositories
 import (
 	"database/sql"
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
+	"time"
 )
 
 type GuestRepo struct {
@@ -59,8 +60,9 @@ func (r *GuestRepo) UpdateAccompanyingGuests(name string, amount int) error {
 }
 
 func (r *GuestRepo) Save(guest *models.Guest) error {
-	query := "INSERT INTO guests(guest_name, table_id, accompanying_guests) VALUES (?, ?, ?)"
-	_, err := r.db.Query(query, guest.Name, guest.Table, guest.AccompanyingGuests)
+	timestamp := time.Now().Format("2006-01-02 15:04:05")
+	query := "INSERT INTO guests(guest_name, table_id, accompanying_guests, time_arrived) VALUES (?, ?, ?, ?)"
+	_, err := r.db.Query(query, guest.Name, guest.Table, guest.AccompanyingGuests, timestamp)
 
 	if err != nil {
 		return err
@@ -70,7 +72,7 @@ func (r *GuestRepo) Save(guest *models.Guest) error {
 }
 
 func (r *GuestRepo) GetGuestsList() ([]models.Guest, error) {
-	query := "SELECT * FROM guests"
+	query := "SELECT guest_name, table_id, accompanying_guests FROM guests"
 	rows, err := r.db.Query(query)
 
 	if err != nil {
