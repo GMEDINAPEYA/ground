@@ -26,7 +26,7 @@ type GuestRepository interface {
 }
 
 func (r *GuestRepo) GetGuest(name string) (*models.Guest, error) {
-	query := "SELECT * FROM guests where guest_name = ?"
+	query := "SELECT guest_name, table_id, accompanying_guests FROM guests where guest_name = ?"
 
 	var guest models.Guest
 	row := r.db.QueryRow(query, name)

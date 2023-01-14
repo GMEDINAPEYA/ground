@@ -12,5 +12,6 @@ func (h *BaseHandler) GetEmptySeats(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]int{"empty_seats": emptySeats})
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]int{"seats_empty": emptySeats})
 }
