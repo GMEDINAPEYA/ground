@@ -1,6 +1,6 @@
 package models
 
 type Table struct {
-	Id       int
-	Capacity int
+	Id       int `json:"id"`
+	Capacity int `json:"capacity"`
 }

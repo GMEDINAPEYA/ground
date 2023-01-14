@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) GetGuestsList(w http.ResponseWriter, r *http.Request) {
-	guests, err := h.groundService.GetGuestsList(r.Context())
+func (h *BaseHandler) GetArrivedGuests(w http.ResponseWriter, r *http.Request) {
+	guests, err := h.groundService.GetArrivedGuests(r.Context())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

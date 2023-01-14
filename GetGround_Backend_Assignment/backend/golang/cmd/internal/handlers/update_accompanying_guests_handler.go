@@ -34,5 +34,6 @@ func (h *BaseHandler) UpdateAccompanyingGuests(w http.ResponseWriter, r *http.Re
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"name": name})
 }
