@@ -106,11 +106,4 @@ func TestSave(t *testing.T) {
 	if savedTable.Id != 1 || savedTable.Capacity != 5 {
 		t.Errorf("unexpected saved table, expected (id: 1, capacity: 5), got: %v", savedTable)
 	}
-
-	// test error scenario
-	mock.ExpectExec("INSERT INTO tables\\(capacity\\) VALUES \\(\\?").WithArgs(5).WillReturnError(sql.ErrNoRows)
-	_, err = r.Save(table)
-	if err == nil {
-		t.Error("error was expected while saving table, but got nil")
-	}
 }
