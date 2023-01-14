@@ -19,6 +19,18 @@ type GuestRepository interface {
 	Save(guest *models.Guest) error
 	GetGuestsList() ([]models.Guest, error)
 	UpdateAccompanyingGuests(name string, amount int) error
+	DeleteGuest(name string) error
+}
+
+func (r *GuestRepo) DeleteGuest(name string) error {
+	query := "DELETE FROM guests WHERE guest_name = ?"
+	_, err := r.db.Query(query, name)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (r *GuestRepo) UpdateAccompanyingGuests(name string, amount int) error {
@@ -29,7 +41,7 @@ func (r *GuestRepo) UpdateAccompanyingGuests(name string, amount int) error {
 		return err
 	}
 
-	return err
+	return nil
 }
 
 func (r *GuestRepo) Save(guest *models.Guest) error {
