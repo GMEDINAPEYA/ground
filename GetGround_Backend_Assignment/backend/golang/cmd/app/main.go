@@ -36,6 +36,7 @@ func main() {
 	r.HandleFunc("/guests/{name}", handler.UpdateAccompanyingGuests).Methods("PUT")
 	r.HandleFunc("/guests/{name}", handler.DeleteGuest).Methods("DELETE")
 	r.HandleFunc("/guests", handler.GetArrivedGuests).Methods("GET")
+	r.HandleFunc("/seats_empty", handler.GetEmptySeats).Methods("GET")
 	http.Handle("/", r)
 	http.ListenAndServe(":3000", nil)
 }

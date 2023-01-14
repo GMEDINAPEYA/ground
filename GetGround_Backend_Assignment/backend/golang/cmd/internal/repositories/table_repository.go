@@ -19,6 +19,29 @@ type TableRepository interface {
 	Save(table *models.Table) (*models.Table, error)
 	GetTableInfo(id int) (*models.Table, error)
 	UpdateTableCapacity(id int, amountOfGuests int) error
+	GetEmptySeats() (int, error)
+}
+
+func (r *TableRepo) GetEmptySeats() (int, error) {
+	query := "SELECT * FROM tables"
+	rows, err := r.db.Query(query)
+
+	if err != nil {
+		return 0, err
+	}
+
+	var emptySeats int
+
+	for rows.Next() {
+		var table models.Table
+		err = rows.Scan(&table.Id, &table.Capacity)
+		if err != nil {
+			return 0, err
+		}
+		emptySeats += table.Capacity
+	}
+
+	return emptySeats, nil
 }
 
 func (r *TableRepo) UpdateTableCapacity(id int, newCapacity int) error {
