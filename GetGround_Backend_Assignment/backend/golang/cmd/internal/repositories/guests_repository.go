@@ -20,6 +20,20 @@ type GuestRepository interface {
 	GetGuestsList() ([]models.Guest, error)
 	UpdateAccompanyingGuests(name string, amount int) error
 	DeleteGuest(name string) error
+	GetGuest(name string) (*models.Guest, error)
+}
+
+func (r *GuestRepo) GetGuest(name string) (*models.Guest, error) {
+	query := "SELECT * FROM guests where guest_name = ?"
+
+	var guest models.Guest
+	row := r.db.QueryRow(query, name)
+
+	if err := row.Scan(&guest.Name, &guest.Table, &guest.AccompanyingGuests); err != nil {
+		return nil, err
+	}
+
+	return &guest, nil
 }
 
 func (r *GuestRepo) DeleteGuest(name string) error {
