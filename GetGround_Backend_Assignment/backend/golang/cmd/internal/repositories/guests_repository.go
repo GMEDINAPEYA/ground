@@ -22,6 +22,7 @@ type GuestRepository interface {
 	UpdateAccompanyingGuests(name string, amount int) error
 	DeleteGuest(name string) error
 	GetGuest(name string) (*models.Guest, error)
+	GetArrivedGuests() ([]models.ArrivedGuest, error)
 }
 
 func (r *GuestRepo) GetGuest(name string) (*models.Guest, error) {
@@ -69,6 +70,28 @@ func (r *GuestRepo) Save(guest *models.Guest) error {
 	}
 
 	return nil
+}
+
+func (r *GuestRepo) GetArrivedGuest() ([]models.ArrivedGuest, error) {
+	query := "SELECT guest_name, accompanying_guests, time_arrived FROM guests"
+	rows, err := r.db.Query(query)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var arrivedGuests []models.ArrivedGuest
+
+	for rows.Next() {
+		var guest models.ArrivedGuest
+		err = rows.Scan(&guest.Name, &guest.AccompanyingGuests, &guest.TimeArrived)
+		if err != nil {
+			return nil, err
+		}
+		arrivedGuests = append(arrivedGuests, guest)
+	}
+
+	return arrivedGuests, nil
 }
 
 func (r *GuestRepo) GetGuestsList() ([]models.Guest, error) {

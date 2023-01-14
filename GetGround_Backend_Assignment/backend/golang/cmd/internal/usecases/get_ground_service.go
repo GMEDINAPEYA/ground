@@ -12,6 +12,7 @@ type GetGroundService interface {
 	GetGuestsList(ctx context.Context) ([]models.Guest, error)
 	UpdateAccompanyingGuests(ctx context.Context, name string, req models.UpdateAccompanyingGuestsCommand) error
 	DeleteGuest(ctx context.Context, name string) error
+	GetArrivedGuests(ctx context.Context) ([]models.ArrivedGuest, error)
 }
 
 type GetGroundServiceImpl struct {

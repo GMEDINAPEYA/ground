@@ -5,10 +5,11 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
 )
 
-func (g GetGroundServiceImpl) GetGuestsList(ctx context.Context) ([]models.Guest, error) {
-	guests, err := g.guestRepository.GetGuestsList()
+func (g GetGroundServiceImpl) GetArrivedGuests(ctx context.Context) ([]models.ArrivedGuest, error) {
+	guests, err := g.guestRepository.GetArrivedGuest()
 	if err != nil {
 		return nil, err
 	}
+
 	return guests, nil
 }
