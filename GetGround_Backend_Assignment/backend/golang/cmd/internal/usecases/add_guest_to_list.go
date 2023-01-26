@@ -7,7 +7,7 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
 )
 
-func (g GetGroundServiceImpl) AddGuestToList(ctx context.Context, cmd models.AddGuestToListCommand) error {
+func (g GuestUseCaseImpl) AddGuestToList(ctx context.Context, cmd models.AddGuestToListCommand) error {
 	// Validate table capacity
 	tableInfo, err := g.tableRepository.GetTableInfo(cmd.Table)
 

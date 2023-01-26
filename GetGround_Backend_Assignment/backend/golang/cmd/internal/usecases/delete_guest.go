@@ -2,7 +2,7 @@ package usecases
 
 import "context"
 
-func (g GetGroundServiceImpl) DeleteGuest(ctx context.Context, name string) error {
+func (g GuestUseCaseImpl) DeleteGuest(ctx context.Context, name string) error {
 	// Get guest first in order to calculate total amount of guests
 	guest, err := g.guestRepository.GetGuest(name)
 	if err != nil {
@@ -21,6 +21,6 @@ func (g GetGroundServiceImpl) DeleteGuest(ctx context.Context, name string) erro
 	if err != nil {
 		return err
 	}
-	
+
 	return nil
 }

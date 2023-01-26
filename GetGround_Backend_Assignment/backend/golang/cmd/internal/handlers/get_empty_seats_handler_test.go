@@ -15,8 +15,8 @@ func TestGetEmptySeats_Success(t *testing.T) {
 	service.On("GetEmptySeats", mock.Anything).Return(10, nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
-		groundService: service,
+	handler := &TableHandler{
+		tableUseCase: service,
 	}
 
 	// Create a new HTTP request for the test
@@ -58,8 +58,8 @@ func TestGetEmptySeats_Failure(t *testing.T) {
 	service.On("GetEmptySeats", mock.Anything).Return(0, errors.New("forced for test"))
 
 	// Create a new handler
-	handler := &BaseHandler{
-		groundService: service,
+	handler := &TableHandler{
+		tableUseCase: service,
 	}
 
 	// Create a new HTTP request for the test

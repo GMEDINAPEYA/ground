@@ -19,7 +19,7 @@ func TestDeleteGuest_Success(t *testing.T) {
 	service.On("DeleteGuest", mock.Anything, mock.Anything).Return(nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -44,7 +44,7 @@ func TestDeleteGuest_Missing_Name(t *testing.T) {
 	service := &mocks.GetGroundService{}
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -65,7 +65,7 @@ func TestDeleteGuest_Failure(t *testing.T) {
 	service.On("DeleteGuest", mock.Anything, mock.Anything).Return(errors.New("unable to delete guest"))
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 

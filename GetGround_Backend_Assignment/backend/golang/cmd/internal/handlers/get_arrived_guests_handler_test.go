@@ -19,7 +19,7 @@ func TestGetArrivedGuests(t *testing.T) {
 	service.On("GetArrivedGuests", mock.Anything).Return([]models.ArrivedGuest{{Name: "John", TimeArrived: "15:00"}}, nil, nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -43,7 +43,7 @@ func TestGetArrivedGuests_Error(t *testing.T) {
 	service.On("GetArrivedGuests", mock.Anything).Return([]models.ArrivedGuest{}, errors.New("unable to fetch guests"))
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 

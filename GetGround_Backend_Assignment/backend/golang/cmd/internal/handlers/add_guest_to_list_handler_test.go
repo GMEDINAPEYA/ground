@@ -33,7 +33,7 @@ func TestAddGuestToGuestList_Valid_Data(t *testing.T) {
 	service.On("AddGuestToList", mock.Anything, mock.Anything).Return(nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -75,7 +75,7 @@ func TestAddGuestToGuestList_Invalid_tableId(t *testing.T) {
 	rr := httptest.NewRecorder()
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: &mocks.GetGroundService{},
 	}
 
@@ -110,7 +110,7 @@ func TestAddGuestToGuestList_Invalid_accompanying_guests(t *testing.T) {
 	rr := httptest.NewRecorder()
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: &mocks.GetGroundService{},
 	}
 

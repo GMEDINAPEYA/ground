@@ -17,7 +17,7 @@ func TestGetGuestListHandler_Success(t *testing.T) {
 	service.On("GetGuestsList", mock.Anything).Return([]models.Guest{{Name: "John", Table: 1, AccompanyingGuests: 2}}, nil, nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -41,7 +41,7 @@ func TestGetGuestListHandler_Failure(t *testing.T) {
 	service.On("GetGuestsList", mock.Anything).Return([]models.Guest{}, errors.New("forced for test"))
 
 	// Create a new handler
-	handler := &BaseHandler{
+	handler := &GuestHandler{
 		groundService: service,
 	}
 

@@ -37,8 +37,8 @@ func TestCreateTable_Valid_Data(t *testing.T) {
 	service.On("CreateTable", mock.Anything, mock.Anything).Return(table, nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
-		groundService: service,
+	handler := &TableHandler{
+		tableUseCase: service,
 	}
 
 	// Create a new mux router and register the handler
@@ -85,8 +85,8 @@ func TestCreateTable_Invalid_Capacity(t *testing.T) {
 	service.On("CreateTable", mock.Anything, mock.Anything).Return(table, nil)
 
 	// Create a new handler
-	handler := &BaseHandler{
-		groundService: service,
+	handler := &TableHandler{
+		tableUseCase: service,
 	}
 
 	// Create a new mux router and register the handler

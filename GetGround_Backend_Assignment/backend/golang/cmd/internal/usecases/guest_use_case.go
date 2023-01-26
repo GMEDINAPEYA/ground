@@ -6,27 +6,25 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/repositories"
 )
 
-type GetGroundService interface {
-	CreateTable(ctx context.Context, cmd models.CreateTableCommand) (*models.Table, error)
+type GuestUseCase interface {
 	AddGuestToList(ctx context.Context, cmd models.AddGuestToListCommand) error
 	GetGuestsList(ctx context.Context) ([]models.Guest, error)
 	UpdateAccompanyingGuests(ctx context.Context, name string, req models.UpdateAccompanyingGuestsCommand) error
 	DeleteGuest(ctx context.Context, name string) error
 	GetArrivedGuests(ctx context.Context) ([]models.ArrivedGuest, error)
-	GetEmptySeats(ctx context.Context) (int, error)
 }
 
-type GetGroundServiceImpl struct {
+type GuestUseCaseImpl struct {
 	tableRepository repositories.TableRepo
 	guestRepository repositories.GuestRepo
 }
 
-func NewGetGroundServiceService(
-	tableRepo repositories.TableRepo,
+func NewGuestUseCase(
 	guestRepo repositories.GuestRepo,
-) GetGroundService {
-	return &GetGroundServiceImpl{
-		tableRepository: tableRepo,
+	tableRepo repositories.TableRepo,
+) GuestUseCase {
+	return &GuestUseCaseImpl{
 		guestRepository: guestRepo,
+		tableRepository: tableRepo,
 	}
 }

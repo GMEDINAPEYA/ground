@@ -30,8 +30,8 @@ func TestUpdateAccompanyingGuests_Success(t *testing.T) {
 	service := &mocks.GetGroundService{}
 	service.On("UpdateAccompanyingGuests", mock.Anything, mock.Anything, mock.Anything).Return(nil)
 
-	// Create a new BaseHandler with the mock ground service
-	handler := &BaseHandler{
+	// Create a new GuestHandler with the mock ground service
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -76,8 +76,8 @@ func TestUpdateAccompanyingGuests_Missing_Name(t *testing.T) {
 	service := &mocks.GetGroundService{}
 	service.On("UpdateAccompanyingGuests", mock.Anything, mock.Anything, mock.Anything).Return(nil)
 
-	// Create a new BaseHandler with the mock ground service
-	handler := &BaseHandler{
+	// Create a new GuestHandler with the mock ground service
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -107,8 +107,8 @@ func TestUpdateAccompanyingGuests_Invalid_Accompanying_Amount(t *testing.T) {
 	service := &mocks.GetGroundService{}
 	service.On("UpdateAccompanyingGuests", mock.Anything, mock.Anything, mock.Anything).Return(nil)
 
-	// Create a new BaseHandler with the mock ground service
-	handler := &BaseHandler{
+	// Create a new GuestHandler with the mock ground service
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
@@ -138,8 +138,8 @@ func TestUpdateAccompanyingGuests_Failure(t *testing.T) {
 	service := &mocks.GetGroundService{}
 	service.On("UpdateAccompanyingGuests", mock.Anything, mock.Anything, mock.Anything).Return(errors.New("forced for test"))
 
-	// Create a new BaseHandler with the mock ground service
-	handler := &BaseHandler{
+	// Create a new GuestHandler with the mock ground service
+	handler := &GuestHandler{
 		groundService: service,
 	}
 
