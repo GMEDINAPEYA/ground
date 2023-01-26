@@ -5,7 +5,7 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
 )
 
-func (g GetGroundServiceImpl) CreateTable(ctx context.Context, cmd models.CreateTableCommand) (*models.Table, error) {
+func (g TableUseCaseImpl) CreateTable(ctx context.Context, cmd models.CreateTableCommand) (*models.Table, error) {
 	table := &models.Table{
 		Capacity: cmd.Capacity,
 	}

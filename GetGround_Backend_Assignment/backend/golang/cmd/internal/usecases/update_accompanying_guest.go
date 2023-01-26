@@ -7,7 +7,7 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
 )
 
-func (g GetGroundServiceImpl) UpdateAccompanyingGuests(ctx context.Context, name string, req models.UpdateAccompanyingGuestsCommand) error {
+func (g GuestUseCaseImpl) UpdateAccompanyingGuests(ctx context.Context, name string, req models.UpdateAccompanyingGuestsCommand) error {
 	// Get guest info
 	guest, err := g.guestRepository.GetGuest(name)
 	if err != nil {

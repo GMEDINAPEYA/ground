@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) CreateTable(w http.ResponseWriter, r *http.Request) {
+func (h *TableHandler) CreateTable(w http.ResponseWriter, r *http.Request) {
 	var req models.CreateTableCommand
 
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -20,7 +20,7 @@ func (h *BaseHandler) CreateTable(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	t, err := h.groundService.CreateTable(r.Context(), req)
+	t, err := h.tableUseCase.CreateTable(r.Context(), req)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

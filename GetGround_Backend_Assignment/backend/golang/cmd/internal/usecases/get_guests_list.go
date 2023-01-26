@@ -5,7 +5,7 @@ import (
 	"github.com/getground/tech-tasks/backend/cmd/internal/models"
 )
 
-func (g GetGroundServiceImpl) GetGuestsList(ctx context.Context) ([]models.Guest, error) {
+func (g GuestUseCaseImpl) GetGuestsList(ctx context.Context) ([]models.Guest, error) {
 	guests, err := g.guestRepository.GetGuestsList()
 	if err != nil {
 		return nil, err

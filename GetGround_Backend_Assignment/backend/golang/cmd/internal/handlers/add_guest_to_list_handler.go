@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) AddGuestToGuestList(w http.ResponseWriter, r *http.Request) {
+func (h *GuestHandler) AddGuestToGuestList(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	name := param["name"]
 

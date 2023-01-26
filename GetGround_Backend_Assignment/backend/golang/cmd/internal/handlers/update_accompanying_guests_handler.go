@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) UpdateAccompanyingGuests(w http.ResponseWriter, r *http.Request) {
+func (h *GuestHandler) UpdateAccompanyingGuests(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	name := param["name"]
 	var req models.UpdateAccompanyingGuestsCommand

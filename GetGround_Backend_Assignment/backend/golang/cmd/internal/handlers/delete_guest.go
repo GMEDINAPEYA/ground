@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) DeleteGuest(w http.ResponseWriter, r *http.Request) {
+func (h *GuestHandler) DeleteGuest(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	name := param["name"]
 

@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func (h *BaseHandler) GetEmptySeats(w http.ResponseWriter, r *http.Request) {
-	emptySeats, err := h.groundService.GetEmptySeats(r.Context())
+func (h *TableHandler) GetEmptySeats(w http.ResponseWriter, r *http.Request) {
+	emptySeats, err := h.tableUseCase.GetEmptySeats(r.Context())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
